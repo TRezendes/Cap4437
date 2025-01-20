@@ -20,8 +20,12 @@ All images are taken from pages 35–37 of *What If?* #44 by writer Peter B. Gil
 
 I wanted to have a working version of the bot by the time Inauguration Day rolled around, so it is what it is for the moment, but there are a few improvements I would like to make. Most notably, I want to improve the image alt text, especially on page 37. The alt text character limit is 1500, and just the text on that page comes to 1396 characters, so there wasn't much room for description. A future version of the bot will use versions of the pages that are split between multiple images to provide more room for alt text.
 
+<<<<<<< HEAD
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/113778771916096812?domain=kind.social&style=social&logoSize=auto)](https://kind.social/@Cap4437)
 
 ![Mastodon Follow](https://img.shields.io/mastodon/follow/113778771916096812?domain=kind.social&style=social&logoSize=auto&link=https%3A%2F%2Fkind.social%2F%40Cap4437)
 
+=======
+![Mastodon Follow](https://img.shields.io/mastodon/follow/113778771916096812?domain=kind.social&style=social&logoSize=auto)
+>>>>>>> main
 
