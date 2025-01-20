@@ -1,4 +1,4 @@
-#!/Users/trezendes/.pyenv/versions/CapBot/bin/python
+#!/home/trezendes/.pyenv/versions/3.13.0/envs/CapBot
 
 from datetime import datetime
 import json
