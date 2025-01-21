@@ -10,7 +10,7 @@ from zoneinfo import ZoneInfo
 from mastodon import AttribAccessDict, Mastodon
 
 
-config_path: str = 'config.json'
+config_path: str = '/home/trezendes/Cap4437/config.json'
 config_file: TextIO
 with open(config_path) as config_file:
     config: dict[str, str] = json.load(config_file)
