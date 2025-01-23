@@ -10,7 +10,8 @@ from zoneinfo import ZoneInfo
 from mastodon import AttribAccessDict, Mastodon
 
 
-config_path: str = '/home/trezendes/Cap4437/config.json'
+dir_path: str = '/home/trezendes/Cap4437/'
+config_path: str = dir_path + 'config.json'
 config_file: TextIO
 with open(config_path) as config_file:
     config: dict[str, str] = json.load(config_file)
@@ -29,16 +30,16 @@ cap_client: Mastodon = Mastodon(client_secret=secret, access_token=token, api_ba
 
 media_path_dict: dict[str, dict] = {
     'Page35': {
-        'image': 'WI4435.jpg',
+        'image': dir_path + 'WI4435.jpg',
         'description': '35.txt'
     },
     'Page36': {
-        'image': 'WI4436.jpg',
+        'image': dir_path + 'WI4436.jpg',
         'description': '36.txt'
     },
     'Page37': {
-        'image': 'WI4437.jpg',
-        'description': '37.txt'
+        'image': dir_path + 'WI4437.jpg',
+        'description': dir_path + '37.txt'
     }
 }
 
