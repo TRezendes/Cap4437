@@ -19,12 +19,12 @@ else:
     dir_path = ''
 
 # For posting on mastodon.social
-# config_path: str = dir_path + 'mastodon.social.config.json'
+config_path: str = dir_path + 'mastodon.social.config.json'
 
 # For posting on kind.social
 # config_path: str = dir_path + 'kind.social.config.json'
 
-config_path: str = dir_path + 'config.json'
+# config_path: str = dir_path + 'config.json'
 
 config_file: TextIO
 with open(config_path) as config_file:
@@ -90,7 +90,7 @@ def poster(media_dict: AttribAccessDict, post_window: tuple[int,int]) -> AttribA
         full_text = f'{post_body}\n{hashtags}'
     else:
         full_text = hashtags
-    scheduled_status: AttribAccessDict = cap_client.status_post(full_text, media_ids=media_dict, scheduled_at=time_to_post, visibility='public', language='en')
+    scheduled_status: AttribAccessDict = cap_client.status_post(full_text, media_ids=media_dict, scheduled_at=time_to_post, visibility='direct', language='en')
     return scheduled_status
 
 index: int
