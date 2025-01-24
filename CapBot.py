@@ -1,7 +1,7 @@
 #!/home/trezendes/.pyenv/versions/3.13.0/envs/CapBot/bin/python
 #/Users/trezendes/.pyenv/versions/3.13.0/envs/CapBot/bin/python
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import platform
 from random import randint
@@ -90,7 +90,7 @@ def poster(media_dict: AttribAccessDict, post_window: tuple[int,int]) -> AttribA
         full_text = f'{post_body}\n{hashtags}'
     else:
         full_text = hashtags
-    scheduled_status: AttribAccessDict = cap_client.status_post(full_text, media_ids=media_dict, scheduled_at=time_to_post, visibility='direct', language='en')
+    scheduled_status: AttribAccessDict = cap_client.status_post(full_text, media_ids=media_dict, scheduled_at=time_to_post, visibility='public', language='en')
     return scheduled_status
 
 index: int
