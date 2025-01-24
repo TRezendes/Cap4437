@@ -1,7 +1,9 @@
 #!/home/trezendes/.pyenv/versions/3.13.0/envs/CapBot/bin/python
+#/Users/trezendes/.pyenv/versions/3.13.0/envs/CapBot/bin/python
 
 from datetime import datetime
 import json
+import platform
 from random import randint
 from time import sleep
 from typing import Any, BinaryIO, Optional, TextIO, TypedDict
@@ -10,14 +12,26 @@ from zoneinfo import ZoneInfo
 from mastodon import AttribAccessDict, Mastodon
 
 
-dir_path: str = '/home/trezendes/Cap4437/'
+dir_path: str
+if platform.system() == 'Linux':
+    dir_path = '/home/trezendes/Cap4437/'
+else:
+    dir_path = ''
+
+# For posting on mastodon.social
+# config_path: str = dir_path + 'mastodon.social.config.json'
+
+# For posting on kind.social
+# config_path: str = dir_path + 'kind.social.config.json'
+
 config_path: str = dir_path + 'config.json'
+
 config_file: TextIO
 with open(config_path) as config_file:
     config: dict[str, str] = json.load(config_file)
 
 secret: str = config['CLIENT_SECRET']
-token: str = config['ACESS_TOKEN']
+token: str = config['ACCESS_TOKEN']
 base_url: str = config['BASE_URL']
 
 class MediaPathInnerDict(TypedDict):
@@ -31,17 +45,19 @@ cap_client: Mastodon = Mastodon(client_secret=secret, access_token=token, api_ba
 media_path_dict: dict[str, dict] = {
     'Page35': {
         'image': dir_path + 'WI4435.jpg',
-        'description': '35.txt'
+        'description': dir_path + '35.txt'
     },
     'Page36': {
         'image': dir_path + 'WI4436.jpg',
-        'description': '36.txt'
+        'description': dir_path + '36.txt'
     },
     'Page37': {
         'image': dir_path + 'WI4437.jpg',
         'description': dir_path + '37.txt'
     }
 }
+
+
 
 post_body: str = ''
 hashtags: str = '#CaptainAmerica #WhatIf'
@@ -60,8 +76,10 @@ def media_uploader(media_path: str, alt_file_path: str) -> AttribAccessDict:
         media_dict = cap_client.media_post(media_file, mime_type='image/jpeg', description=alt_text)
     return media_dict
 
+
 def poster(media_dict: AttribAccessDict, post_window: tuple[int,int]) -> AttribAccessDict:
     current_date = datetime.now().strftime('%Y-%m-%d')
+    # current_date = (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d')
     hour: int = randint(post_window[0], post_window[1])
     minute = randint(0, 59)
     second = randint(0, 59)
@@ -73,7 +91,6 @@ def poster(media_dict: AttribAccessDict, post_window: tuple[int,int]) -> AttribA
     else:
         full_text = hashtags
     scheduled_status: AttribAccessDict = cap_client.status_post(full_text, media_ids=media_dict, scheduled_at=time_to_post, visibility='public', language='en')
-
     return scheduled_status
 
 index: int
